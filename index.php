@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@
 
 <?php
 session_start();
+include 'navbar.php';
 ?>
 
 <h1>Üdvözöllek az oldalon 
@@ -20,7 +21,6 @@ session_start();
 <?php endif; ?>
 !
 </h1>
-
 <?php if(isset($_SESSION['felhasznalo'])): ?>
     <a href="lista.php" class="gomb">Felhasználók listája</a><br>
     <a href="kijelentkez.php" class="gomb">Kijelentkezés</a>

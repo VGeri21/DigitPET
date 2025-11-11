@@ -1,38 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <title>Felhasználók listája</title>
 </head>
 <body>
-    
-</body>
-</html>
 <?php
 session_start();
 include 'kapcsolat.php';
 
+// Ha nincs bejelentkezve, visszadob a login oldalra
 if(!isset($_SESSION['felhasznalo'])){
-    header("Location: bejelentkezes.php");
+    header("Location: bejelentkez.php");
     exit;
 }
 
-$lekerdezes = $kapcsolat->query("SELECT id, username FROM users");
+// Felhasználók lekérdezése
+$lekerdezes = $kapcsolat->query("SELECT id, felhasznalonev FROM felhasznalok");
 ?>
 
 <h2>Regisztrált felhasználók</h2>
-<table border="1">
+<table border="1" cellpadding="5" cellspacing="0">
     <tr>
         <th>ID</th>
         <th>Felhasználónév</th>
     </tr>
     <?php while($sor = $lekerdezes->fetch_assoc()): ?>
     <tr>
-        <td><?= $sor['id'] ?></td>
-        <td><?= $sor['username'] ?></td>
+        <td><?= htmlspecialchars($sor['id']) ?></td>
+        <td><?= htmlspecialchars($sor['felhasznalonev']) ?></td>
     </tr>
     <?php endwhile; ?>
 </table>
 
+<br>
 <a href="index.php" class="gomb">Vissza a főoldalra</a>
+</body>
+</html>

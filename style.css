@@ -1,28 +1,32 @@
-.gomb {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;      
-    text-decoration: none;    
-    border-radius: 5px;   
-    font-weight: bold;
-    transition: background-color 0.3s;
-    margin: 5px;
+.navbar{
+    color:white;
+    text-decoration: none;
+
+}
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
 }
 
-.gomb:hover {
-    background-color: #45a049;
+.navbar ul li {
+  float: left;
 }
 
-.gomb2{
+.navbar ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
 
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;      
-    text-decoration: none;    
-    border-radius: 5px;   
-    font-weight: bold;
-    transition: background-color 0.3s;
-    margin: 5px;
+.navbar ul li a:hover:not(.active) {
+  background-color: #111111;
+}
+
+.navbar ul li a.active {
+  background-color: #04AA6D;
 }
