@@ -1,32 +1,335 @@
-.navbar{
-    color:white;
-    text-decoration: none;
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, sans-serif;
 }
+
+body {
+    background: #f9f9f9;
+    color: #222;
+}
+.navbar {
+    width: 100%;
+    background: #1c1c1c;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+}
+
+.navbar .logo {
+    font-weight: 600;
+    font-size: 20px;
+    color: #32CD32;
+}
+
 .navbar ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333333;
-}
-
-.navbar ul li {
-  float: left;
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    align-items: center;
 }
 
 .navbar ul li a {
-  display: block;
-  color: white;
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s;
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+
+.navbar ul li a:hover {
+    background: #32CD32;
+    color: #000;
+}
+
+.auth-btn {
+    font-weight: 600;
+    border: 2px solid #32CD32;
+    border-radius: 25px;
+    padding: 8px 18px;
+    transition: 0.3s ease;
+}
+.auth-btn.login {
+    background: transparent;
+    color: #32CD32;
+}
+
+.auth-btn.login:hover {
+    background: #32CD32;
+    color: #000;
+}
+
+.auth-btn.register {
+    background: #32CD32;
+    color: #000;
+}
+
+.auth-btn.register:hover {
+    background: #2ca32c;
+}
+
+.auth-btn.logout {
+    background: #ff4c4c;
+    border-color: #ff4c4c;
+    color: #fff;
+}
+
+.auth-btn.logout:hover {
+    background: #e03939;
+}
+.tartalom {
+    max-width: 800px;
+    margin: 80px auto;
+    text-align: center;
+    padding: 20px;
+}
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        color: #32CD32;
+    }
+
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #1c1c1c;
+        margin-top: 10px;
+        padding: 10px 0;
+    }
+
+    .navbar.active ul {
+        display: flex;
+    }
+
+    .navbar ul li {
+        text-align: center;
+        width: 100%;
+    }
+
+    .navbar ul li a {
+        display: block;
+        width: 100%;
+        padding: 12px;
+    }
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f9f9f9;
+  color: #222;
+  line-height: 1.6;
+}
+.hero {
+  position: relative;
+  height: 90vh;
+  background: url('https://images.unsplash.com/photo-1601758123927-196edb2e5b4f?auto=format&fit=crop&w=1950&q=80')
+    center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 14px 16px;
+  color: #fff;
+}
+
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  color: #32CD32;
+  text-shadow: 0 0 20px rgba(50, 205, 50, 0.5);
+}
+
+.hero-content p {
+  margin: 20px 0;
+  font-size: 1.1rem;
+}
+
+.btn-hero {
+  display: inline-block;
+  background: #32CD32;
+  color: #000;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
   text-decoration: none;
+  transition: 0.3s ease;
 }
 
-.navbar ul li a:hover:not(.active) {
-  background-color: #111111;
+.btn-hero:hover {
+  background: #28b428;
+  transform: translateY(-3px);
+}
+.about {
+  text-align: center;
+  padding: 80px 20px;
+  background: #fff;
 }
 
-.navbar ul li a.active {
-  background-color: #04AA6D;
+.about h2 {
+  font-size: 2rem;
+  color: #32CD32;
+  margin-bottom: 15px;
+}
+
+.about p {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  color: #555;
+}
+
+.btn-secondary {
+  display: inline-block;
+  background: #222;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #32CD32;
+  color: #000;
+}
+.products {
+  background: #f3f3f3;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.products h2 {
+  font-size: 2rem;
+  color: #32CD32;
+  margin-bottom: 50px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.product-card h3 {
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.btn-card {
+  display: inline-block;
+  background: #32CD32;
+  color: #000;
+  padding: 8px 18px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-card:hover {
+  background: #28b428;
+}
+
+footer {
+  background: #111;
+  color: #aaa;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about, .products {
+    padding: 60px 15px;
+  }
+}
+.welcome-box {
+  display: inline-block;
+  background: linear-gradient(135deg, #28b428, #63e963);
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+.welcome-box span {
+  font-weight: 600;
+  color: #ffeb3b;
+}
+.welcome-box:hover {
+  opacity: 1;
+  transform: scale(1.03);
 }

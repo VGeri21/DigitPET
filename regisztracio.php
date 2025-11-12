@@ -9,7 +9,6 @@
 <body>
 <?php
 session_start();
-include 'navbar.php';
 include 'kapcsolat.php';
 
 if (isset($_POST['regisztral'])) {
