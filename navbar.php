@@ -1,5 +1,6 @@
 <?php
 session_start();
+$current_page = basename($_SERVER['PHP_SELF']); // pl. 'index.php'
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -18,20 +19,19 @@ session_start();
         ?>
         </div> -->
         <ul>
-            <li><a href="index.php">Főoldal</a></li>
-            <li><a href="rolunk.php">Rólunk</a></li>
+    <li><a href="index.php" class="<?= ($current_page == 'index.php') ? 'active' : '' ?>">Főoldal</a></li>
+    <li><a href="rolunk.php" class="<?= ($current_page == 'rolunk.php') ? 'active' : '' ?>">Rólunk</a></li>
 
-            <?php if (isset($_SESSION['felhasznalo'])): ?>
-                <li><a href="profil.php">Profil</a></li>
-                <!-- <li><a href="lista.php">Felhasználók listája</a></li> -->
-                 <li><a href="allat.php">Saját állatom adatai</a></li>
-                 <li><a href="allat.php">Egyedi bilétát tervezek</a></li>
-                <li><a href="kijelentkez.php" class="auth-btn logout">Kijelentkezés</a></li>
-            <?php else: ?>
-                <li><a href="bejelentkez.php" class="auth-btn login">Bejelentkezés</a></li>
-                <li><a href="regisztracio.php" class="auth-btn register">Regisztráció</a></li>
-            <?php endif; ?>
-        </ul>
+    <?php if (isset($_SESSION['felhasznalo'])): ?>
+        <li><a href="profil.php" class="<?= ($current_page == 'profil.php') ? 'active' : '' ?>">Profil</a></li>
+        <li><a href="allat.php" class="<?= ($current_page == 'allat.php') ? 'active' : '' ?>">Saját állatom adatai</a></li>
+        <li><a href="tervez.php" class="<?= ($current_page == 'tervez.php') ? 'active' : '' ?>">Egyedi bilétát tervezek</a></li>
+        <li><a href="kijelentkez.php" class="auth-btn logout <?= ($current_page == 'kijelentkez.php') ? 'active' : '' ?>">Kijelentkezés</a></li>
+    <?php else: ?>
+        <li><a href="bejelentkez.php" class="auth-btn login <?= ($current_page == 'bejelentkez.php') ? 'active' : '' ?>">Bejelentkezés</a></li>
+        <li><a href="regisztracio.php" class="auth-btn register <?= ($current_page == 'regisztracio.php') ? 'active' : '' ?>">Regisztráció</a></li>
+    <?php endif; ?>
+</ul>
     </nav>
     <script>
         const toggle = document.getElementById('menu-toggle');

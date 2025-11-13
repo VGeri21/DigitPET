@@ -16,7 +16,7 @@
             <h1>Biztonság a kedvencnek, nyugalom a gazdinak 🐾</h1>
             <p>Okos NFC-s nyakörv, ami egyetlen érintéssel megmutatja, kié a kutyus.  
             Modern, stílusos, és akár életet is menthet!</p>
-            <a href="tervez.php" class="btn-hero">Egyedi nyakörvet tervezek!</a>
+            <a href="tervez.php" class="btn-hero">Egyedi bilétát tervezek!</a>
         </div>
     </section>
     <section class="about">

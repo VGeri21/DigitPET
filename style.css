@@ -22,7 +22,6 @@ body {
     top: 0;
     z-index: 999;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 1rem;
 }
 
 .navbar .logo {
@@ -52,6 +51,13 @@ body {
     background: #32CD32;
     color: #000;
 }
+
+.navbar ul li a.active {
+    background-color: #32CD32;
+    font-weight: bold;
+    border-bottom: 2px solid #32CD32;
+}
+
 
 .auth-btn {
     font-weight: 600;
