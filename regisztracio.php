@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
-    <title>Regisztráció</title>
-</head>
-<body>
 <?php
 session_start();
 include 'kapcsolat.php';
+
+$alert = "";
+$alert_type = "";
 
 if (isset($_POST['regisztral'])) {
     $felhasznalonev = trim($_POST['felhasznalonev']);
@@ -18,7 +12,8 @@ if (isset($_POST['regisztral'])) {
 
     // Ellenőrzés: gmail.com cím kötelező
     if (!preg_match('/^[a-zA-Z0-9._%+-]+@gmail\.com$/', $email)) {
-        alert("❌ Csak gmail.com végződésű e-mail címmel lehet regisztrálni!");
+        $alert = "❌ Csak gmail.com végződésű e-mail címmel lehet regisztrálni!";
+        $alert_type = "error";
     } else {
         // Ellenőrizzük, létezik-e már ez a felhasználónév
         $lekerdezes1 = $kapcsolat->prepare("SELECT * FROM felhasznalok WHERE felhasznalonev = ?");
@@ -33,26 +28,43 @@ if (isset($_POST['regisztral'])) {
         $eredmeny2 = $lekerdezes2->get_result();
 
         if ($eredmeny1->num_rows > 0) {
-            echo "<p>❌ Ez a felhasználónév már foglalt!</p>";
+            $alert = "❌ Ez a felhasználónév már foglalt!";
+            $alert_type = "error";
         } elseif ($eredmeny2->num_rows > 0) {
-            echo "<p>⚠️ Ezzel az e-mail címmel már regisztráltak fiókot!</p>";
+            $alert = "⚠️ Ezzel az e-mail címmel már regisztráltak!";
+            $alert_type = "error";
         } else {
             // Új felhasználó hozzáadása
             $hozzaadas = $kapcsolat->prepare("INSERT INTO felhasznalok (felhasznalonev, jelszo, email) VALUES (?, ?, ?)");
             $hozzaadas->bind_param("sss", $felhasznalonev, $jelszo, $email);
 
             if ($hozzaadas->execute()) {
-                // Átirányítás sikeres regisztráció után
                 header("Location: bejelentkez.php?ujsiker=1");
                 exit;
             } else {
-                echo "<p>⚠️ Hiba történt a regisztráció során!</p>";
+                $alert = "⚠️ Hiba történt a regisztráció során!";
+                $alert_type = "error";
             }
         }
     }
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Regisztráció</title>
+</head>
+<body>
+
+<?php if (!empty($alert)): ?>
+<div class="alert <?= $alert_type ?>" id="alertBox">
+    <?= $alert ?>
+</div>
+<?php endif; ?>
 
 <div class="ring">
   <i style="--clr:#00FF00;"></i>
@@ -70,5 +82,19 @@ if (isset($_POST['regisztral'])) {
     </div>
   </div>
 </div>
+
+<script>
+const alertBox = document.getElementById("alertBox");
+
+if (alertBox) {
+    setTimeout(() => {
+        alertBox.classList.add("show");
+    }, 200);
+
+    setTimeout(() => {
+        alertBox.classList.remove("show");
+    }, 4500);
+}
+</script>
 </body>
 </html>

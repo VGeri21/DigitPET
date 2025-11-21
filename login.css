@@ -166,3 +166,30 @@ body {
     font-size: 1rem;
   }
 }
+.alert {
+    position: fixed;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: top 0.6s ease;
+}
+
+.alert.success {
+    background-color: #4caf50;
+}
+
+.alert.error {
+    background-color: #e53935;
+}
+
+/* amikor legördül */
+.alert.show {
+    top: 20px;
+}
