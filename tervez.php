@@ -7,15 +7,14 @@
 <link rel="stylesheet" href="style.css">
 <style>
 :root {
-  /* Biléta oldal változók */
-  --bileta-alapszin-vilagos: #00FF00;
-  --bileta-alapszin-kozeps: #32CD32;
-  --bileta-alapszin-sotet: #228B22;
+  --bileta-alapszin-vilagos: #ffffffff;
+  --bileta-alapszin-kozeps: #ffffffff;
+  --bileta-alapszin-sotet: #ffffffff;
 
   --bileta-szoveg-szin: #ffffff;
   --bileta-kiemelo-szin: #000000;
 
-  --bileta-kartya-hatter: rgba(255,255,255,0.1);
+  --bileta-kartya-hatter: rgba(20, 20, 20, 0.85);
   --bileta-kartya-arnyek: 0 8px 20px rgba(0,0,0,0.2);
 }
 
@@ -31,6 +30,7 @@
 }
 
 .bileta-oldal h2 {
+  color: #32CD32;
   margin-bottom: 20px;
   font-size: 2rem;
   text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
@@ -41,7 +41,7 @@
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 20px;
-  max-width: 400px;
+  max-width: 800px;
   width: 100%;
   text-align: center;
   box-shadow: var(--bileta-kartya-arnyek);
@@ -95,9 +95,9 @@
 <?php include 'navbar.php'; ?>
 
 <div class="bileta-oldal">
-  <h2>🐾 DigitPet Biléta Tervező</h2>
 
   <div class="bileta-kartya">
+  <h2>Biléta Tervező</h2>
     <svg id="elonezet" viewBox="0 0 250 250">
       <circle id="forma-kor" cx="125" cy="125" r="100" fill="#00FF00" stroke="#000000" stroke-width="10" style="display:none"/>
       <rect id="forma-negyzet" x="25" y="25" width="200" height="200" rx="20" fill="#00FF00" stroke="#000000" stroke-width="10" style="display:none"/>
