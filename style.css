@@ -153,8 +153,7 @@ body {
 .hero {
   position: relative;
   height: 90vh;
-  background: url('https://images.unsplash.com/photo-1601758123927-196edb2e5b4f?auto=format&fit=crop&w=1950&q=80')
-    center/cover no-repeat;
+  background: url('1.png') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;

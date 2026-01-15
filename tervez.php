@@ -1,3 +1,26 @@
+<?php
+session_start();
+include 'kapcsolat.php';
+
+if (!isset($_SESSION['felhasznalo'])) {
+    die("❌ Ehhez az oldalhoz be kell jelentkezned!");
+}
+
+$felhasznalonev = $_SESSION['felhasznalo'];
+
+// Felhasználó ID lekérése
+$leker = $kapcsolat->prepare("SELECT id FROM felhasznalok WHERE felhasznalonev = ?");
+$leker->bind_param("s", $felhasznalonev);
+$leker->execute();
+$user = $leker->get_result()->fetch_assoc();
+$felhasznalo_id = $user['id'];
+
+// Felhasználó állatai
+$allatok = $kapcsolat->prepare("SELECT id, kutya_nev FROM allatok WHERE felhasznalo_id = ?");
+$allatok->bind_param("i", $felhasznalo_id);
+$allatok->execute();
+$allatokLista = $allatok->get_result();
+?>
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -112,6 +135,19 @@
 
     <div class="controls">
       <div>
+        <label>Állat kiválasztása:</label>
+        <select id="allatSelect">
+          <option value="">-- Válassz állatot --</option>
+          <?php while($allat = $allatokLista->fetch_assoc()): ?>
+              <option value="<?= $allat['id'] ?>">
+                  <?= htmlspecialchars($allat['kutya_nev']) ?>
+              </option>
+          <?php endwhile; ?>
+        </select>
+        <input type="hidden" name="allat_id" id="allat_id">
+      </div>
+
+      <div>
         <label>Forma:</label>
         <select id="forma">
           <option value="csont">Csont</option>
@@ -132,7 +168,7 @@
 
       <div>
         <label>Kutya neve:</label>
-        <input type="text" id="nev" value="KUTYA NÉV">
+        <input type="text" id="nev" value="KUTYA NÉV" maxlength="15">
       </div>
     </div>
   </div>
@@ -179,7 +215,17 @@ function frissitElonezet() {
   }
 }
 
+// Eredeti vezérlők
 [formaSelect, alapszin, kiemeloSzin, nevInput].forEach(el => el.addEventListener('input', frissitElonezet));
+
+// Állat kiválasztása csak logikai kapcsolat (nem írja felül a nevet)
+const allatSelect = document.getElementById('allatSelect');
+const allatIdInput = document.getElementById('allat_id');
+
+allatSelect.addEventListener('change', () => {
+    allatIdInput.value = allatSelect.value;
+});
+
 frissitElonezet();
 </script>
 

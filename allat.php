@@ -118,6 +118,9 @@ $talalatok = $allatok->get_result();
                 <th>Név</th>
                 <th>Fajta</th>
                 <th>Születési dátum</th>
+                <th>Telefonszám</th>
+                <th>Lakcím</th>
+                <th>Megjegyzés</th>
                 <th>Biléta kód</th>
                 <th>Művelet</th>
             </tr>
@@ -128,8 +131,11 @@ $talalatok = $allatok->get_result();
                 <td><?= $sor['kutya_nev'] ?></td>
                 <td><?= $sor['fajta'] ?></td>
                 <td><?= $sor['szul_datum'] ?></td>
+                <td><?= $sor['gazdi_telefonszam'] ?></td>
+                <td><?= $sor['lakcim'] ?></td>
+                <td><?= $sor['extra_megjegyzes'] ?></td>
                 <td><?= $sor['bileta_kod'] ?></td>
-                <td><a href="allat_szerkeszt.php?id=<?= $sor['id'] ?>">✏ Szerkesztés</a></td>
+                <td><a href="torol.php?id=<?= $sor['id'] ?>" onclick="return confirm('Biztosan törölni szeretnéd ezt az állatot?');">🗑 Törlés</a></td>
             </tr>
         <?php endwhile; ?>
         </tbody>
