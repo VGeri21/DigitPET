@@ -3,7 +3,8 @@ session_start();
 include 'kapcsolat.php';
 
 if (!isset($_SESSION['felhasznalo'])) {
-    die("❌ Be kell jelentkezni!");
+    header("Location: bejelentkez.php");
+    exit();
 }
 
 $felhasznalonev = $_SESSION['felhasznalo'];
@@ -44,83 +45,7 @@ $termekek = [
 <title>Basic NFC Biléták</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
-<style>
-body {
-    background: #0f0f0f;
-    color: #fff;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-.container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.allat-valaszto {
-    background: #1c1c1c;
-    padding: 15px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-}
-
-select {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-}
-
-.termek-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.termek {
-    background: #1c1c1c;
-    border-radius: 16px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,.3);
-}
-
-.termek img {
-    width: 120px;
-    margin-bottom: 15px;
-}
-
-.termek h3 {
-    margin-bottom: 10px;
-}
-
-.termek .ar {
-    color: #32CD32;
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-button {
-    background: #32CD32;
-    color: #000;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-button:disabled {
-    background: #555;
-    cursor: not-allowed;
-}
-</style>
+<link rel="stylesheet" href="termekek.css">
 </head>
 <body>
 

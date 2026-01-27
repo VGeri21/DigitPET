@@ -15,6 +15,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <?php if (isset($_SESSION['felhasznalo'])): ?>
             <li><a href="profil.php" class="<?= ($current_page == 'profil.php') ? 'active' : '' ?>">Profil</a></li>
             <li><a href="allat.php" class="<?= ($current_page == 'allat.php') ? 'active' : '' ?>">Saját állatom adatai</a></li>
+            <li><a href="termékek.php" class="<?= ($current_page == 'termékek.php') ? 'active' : '' ?>">Teremékek</a></li>
             <li><a href="tervez.php" class="<?= ($current_page == 'tervez.php') ? 'active' : '' ?>">Egyedi bilétát tervezek</a></li>
             <li><a href="kijelentkez.php" class="auth-btn logout <?= ($current_page == 'kijelentkez.php') ? 'active' : '' ?>">Kijelentkezés</a></li>
         <?php else: ?>

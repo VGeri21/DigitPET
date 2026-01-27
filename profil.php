@@ -3,7 +3,8 @@ session_start();
 include 'kapcsolat.php';
 
 if (!isset($_SESSION['felhasznalo'])) {
-    die("❌ Bejelentkezés szükséges!");
+        header("Location: bejelentkez.php");
+        exit();
 }
 
 $felhasznalonev = $_SESSION['felhasznalo'];
@@ -76,6 +77,7 @@ $veg = rendelesek($kapcsolat, $user_id, 'vegrehajtott');
     <title>Profil</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="profil.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 

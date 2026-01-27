@@ -4,7 +4,8 @@ session_start();
 include 'kapcsolat.php';
 
 if (!isset($_SESSION['felhasznalo'])) {
-    die("❌ Ehhez az oldalhoz be kell jelentkezned!");
+        header("Location: bejelentkez.php");
+        exit();
 }
 
 $felhasznalonev = $_SESSION['felhasznalo'];
