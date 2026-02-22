@@ -1,39 +1,66 @@
 <?php
-session_start(); 
-include 'kapcsolat.php'; 
-if (!isset($_SESSION['felhasznalo'])) { 
-    header("Location: bejelentkez.php"); exit(); 
-}
+session_start();
+include 'kapcsolat.php';
 
-$felhasznalonev = $_SESSION['felhasznalo'];
-$leker = $kapcsolat->prepare("SELECT id FROM felhasznalok WHERE felhasznalonev = ?");
-$leker->bind_param("s", $felhasznalonev);
-$leker->execute();
-$user = $leker->get_result()->fetch_assoc();
-$felhasznalo_id = $user['id'];
-
-$allatok = $kapcsolat->prepare("SELECT id, kutya_nev FROM allatok WHERE felhasznalo_id = ?");
-$allatok->bind_param("i", $felhasznalo_id);
-$allatok->execute();
-$allatokLista = $allatok->get_result();
-
-// EGYEDI TERVEZŐ KOSÁR HOZZÁADÁS
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['egyedi_kosar'])) {
-    $rendeles_id = $kapcsolat->query("INSERT INTO rendeles (felhasznalo_id, datum) VALUES ($felhasznalo_id, NOW())")->insert_id;
-    
-    // Szín ID (ha nincs, NULL)
-    $szin_id = isset($_POST['szin_id']) ? $_POST['szin_id'] : null;
-    $forma_id = isset($_POST['forma_id']) ? $_POST['forma_id'] : null;
-    
-    $kapcsolat->query("INSERT INTO kosar (rendeles_id, szin_id, forma_id, allat_id) VALUES ($rendeles_id, " . ($szin_id ? "'$szin_id'" : 'NULL') . ", " . ($forma_id ? "'$forma_id'" : 'NULL') . ", '{$_POST['allat_id']}')");
-    
-    $_SESSION['uzenet'] = "Egyedi biléta kosárba téve!";
-    header("Location: " . $_SERVER['PHP_SELF']);
+if (!isset($_SESSION['felhasznalo'])) {
+    header("Location: bejelentkez.php");
     exit();
 }
 
-// Aktuális kosár
-$kosar = $kapcsolat->query("SELECT k.*, r.teljesitett FROM kosar k JOIN rendeles r ON k.rendeles_id = r.id WHERE r.felhasznalo_id = $felhasznalo_id AND r.teljesitett = 0 ORDER BY r.datum DESC LIMIT 3")->fetch_all(MYSQLI_ASSOC);
+$felhasznalonev = $_SESSION['felhasznalo'];
+
+/* USER ID */
+$stmt = $kapcsolat->prepare("SELECT id FROM felhasznalok WHERE felhasznalonev = ?");
+$stmt->bind_param("s", $felhasznalonev);
+$stmt->execute();
+$user = $stmt->get_result()->fetch_assoc();
+$felhasznalo_id = $user['id'];
+
+/* AKTÍV RENDELÉS */
+$stmt = $kapcsolat->prepare("SELECT id FROM rendeles WHERE felhasznalo_id = ? AND teljesitett = 0 LIMIT 1");
+$stmt->bind_param("i", $felhasznalo_id);
+$stmt->execute();
+$rendeles = $stmt->get_result()->fetch_assoc();
+
+if (!$rendeles) {
+    $stmt = $kapcsolat->prepare("INSERT INTO rendeles (felhasznalo_id, datum, teljesitett) VALUES (?, NOW(), 0)");
+    $stmt->bind_param("i", $felhasznalo_id);
+    $stmt->execute();
+    $rendeles_id = $stmt->insert_id;
+} else {
+    $rendeles_id = $rendeles['id'];
+}
+
+/* ÁLLATOK */
+$stmt = $kapcsolat->prepare("SELECT id, kutya_nev FROM allatok WHERE felhasznalo_id = ?");
+$stmt->bind_param("i", $felhasznalo_id);
+$stmt->execute();
+$allatokLista = $stmt->get_result();
+
+/* EGYEDI KOSÁRBA */
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['egyedi_kosar'])) {
+
+    $stmt = $kapcsolat->prepare("
+        INSERT INTO kosar 
+        (rendeles_id, allat_id, egyedi_alapszin, egyedi_keretszin, egyedi_felirat)
+        VALUES (?, ?, ?, ?, ?)
+    ");
+
+    $stmt->bind_param(
+        "iisss",
+        $rendeles_id,
+        $_POST['allat_id'],
+        $_POST['alapszin'],
+        $_POST['kiemelo_szin'],
+        $_POST['nev']
+    );
+
+    $stmt->execute();
+
+    $_SESSION['uzenet'] = "✅ Egyedi biléta kosárba téve!";
+    header("Location: tervez.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="hu">
