@@ -66,7 +66,7 @@ function rendelesek($kapcsolat, $user_id, $allapot){
 }
 
 $aktiv = rendelesek($kapcsolat, $user_id, 'aktiv');
-$lezart = rendelesek($kapcsolat, $user_id, 'lezart');
+$keszul = rendelesek($kapcsolat, $user_id, 'keszul');
 $veg = rendelesek($kapcsolat, $user_id, 'vegrehajtott');
 ?>
 
@@ -135,7 +135,7 @@ function tabla($cim, $adat){
             
             echo '<div class="profil-card">';
             tabla("🟢 Aktív rendelések", $aktiv);
-            tabla("🔒 Lezárt rendelések", $lezart);
+            tabla("⚙️ Készítés alatt", $keszul);
             tabla("✅ Végrehajtott rendelések", $veg);
             echo "</div>";
 ?>

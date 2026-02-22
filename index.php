@@ -38,12 +38,6 @@
                 <a href="#" class="btn-card">Részletek</a>
             </div>
             <div class="product-card">
-                <img src="https://place-puppy.com/301x200" alt="DigitPet Premium Nyakörv">
-                <h3>DigitPet Premium</h3>
-                <p>Vízálló, strapabíró és modern – prémium megoldás a biztonságért.</p>
-                <a href="#" class="btn-card">Részletek</a>
-            </div>
-            <div class="product-card">
                 <img src="https://place-puppy.com/302x200" alt="DigitPet Custom Nyakörv">
                 <h3>DigitPet Custom</h3>
                 <p>Egyedi mintákkal és színekkel, hogy a kedvenc is stílusos legyen!</p>

@@ -1,0 +1,148 @@
+:root {
+    --neon-zold: #32CD32;
+    --neon-zold-dark: #228B22;
+    --kartya-hatter: rgba(30,30,30,0.95);
+    --input-hatter: #121212;
+    --input-szin: #eaeaea;
+    --input-border: #32CD32;
+    --bileta-font: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* OLDAL KONTAINER */
+.bileta-oldal {
+    font-family: var(--bileta-font);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+    color: var(--input-szin);
+}
+
+/* CÍM */
+.bileta-oldal h2 {
+    color: var(--neon-zold);
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+
+/* KÁRTYA */
+.bileta-kartya {
+    background: var(--kartya-hatter);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px 20px;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(50, 205, 50, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bileta-kartya:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(50, 205, 50, 0.5);
+}
+
+/* SVG */
+.bileta-kartya svg {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+    margin: 20px auto;
+}
+
+.bileta-kartya text {
+    font-weight: bold;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    pointer-events: none;
+}
+
+/* VEZÉRLŐK */
+.bileta-kartya .controls {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bileta-kartya label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.bileta-kartya select,
+.bileta-kartya input[type="text"],
+.bileta-kartya input[type="color"] {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+    font-size: 1rem;
+    width: 100%;
+    background: var(--input-hatter);
+    color: var(--input-szin);
+    transition: 0.2s;
+}
+
+.bileta-kartya select:focus,
+.bileta-kartya input:focus {
+    border-color: var(--neon-zold);
+    box-shadow: 0 0 6px var(--neon-zold);
+    outline: none;
+}
+
+.bileta-kartya input[type="color"] {
+    padding: 0;
+    height: 40px;
+    width: 60px;
+    cursor: pointer;
+}
+
+/* Hover effekt az inputokon és selecteken */
+.bileta-kartya select:hover,
+.bileta-kartya input:hover {
+    box-shadow: 0 0 5px var(--neon-zold);
+}
+
+/* RESZPONZÍV */
+@media (max-width: 768px) {
+    .bileta-oldal { padding: 30px 15px; }
+    .bileta-kartya { padding: 25px 15px; }
+    .bileta-kartya h2 { font-size: 1.8rem; }
+    .bileta-kartya svg { width: 90%; max-width: 250px; }
+}
+
+@media (max-width: 480px) {
+    .bileta-oldal { padding: 20px 10px; }
+    .bileta-kartya { padding: 20px 10px; }
+    .bileta-kartya h2 { font-size: 1.5rem; }
+    .bileta-kartya svg { width: 100%; max-width: 220px; }
+}
+
+.kosarba-gombok{
+    width: 100%;
+    background: #228B22;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.25s ease;
+}
+
+.kosarba-gombok:hover:not(:disabled) {
+    background: #32CD32;
+    color: #000;
+    box-shadow: 0 0 10px #00FF00;
+}
+
+.kosarba-gombok:disabled {
+    background: #555;
+    cursor: not-allowed;
+}

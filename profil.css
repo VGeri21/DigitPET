@@ -1,31 +1,42 @@
-/* PROFIL OLDAL */
-
 .profil {
     max-width: 900px;
     margin: 60px auto;
-    padding: 20px;
+    padding: 40px 20px;
+    background: #2a2a2a;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.15);
+    color: #eaeaea;
 }
 
+/* CÍMEK */
 .profil h2 {
     text-align: center;
     font-size: 2rem;
     color: #32CD32;
-    margin-bottom: 30px;
+    margin: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .profil h3 {
     margin: 40px 0 15px;
-    color: #222;
+    color: #32CD32;
     font-weight: 600;
 }
 
 /* KÁRTYÁK */
 .profil-card {
-    background: #fff;
+    background: #1e1e1e;
     border-radius: 16px;
     padding: 25px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 30px;
+    box-shadow: 0 0 15px rgba(50, 205, 50, 0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.profil-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
 /* FORMOK */
@@ -35,36 +46,42 @@
     gap: 15px;
 }
 
-.profil input {
+.profil input,
+.profil textarea {
     padding: 12px 15px;
     border-radius: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #32CD32;
+    background: #121212;
+    color: #fff;
     font-size: 15px;
     transition: 0.3s;
 }
 
-.profil input:focus {
+.profil input:focus,
+.profil textarea:focus {
     outline: none;
-    border-color: #32CD32;
-    box-shadow: 0 0 0 2px rgba(50,205,50,0.2);
+    border-color: #00FF00;
+    box-shadow: 0 0 6px #00FF00;
 }
 
 /* GOMBOK */
 .profil .gomb {
     align-self: flex-start;
-    background: #32CD32;
-    color: #000;
+    background: #228B22;
+    color: #fff;
     border: none;
-    padding: 10px 25px;
+    padding: 12px 25px;
     border-radius: 25px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: 0.25s ease;
 }
 
 .profil .gomb:hover {
-    background: #28b428;
+    background: #32CD32;
+    color: #000;
     transform: translateY(-2px);
+    box-shadow: 0 0 10px #00FF00;
 }
 
 /* ALERT */
@@ -77,6 +94,7 @@
     font-weight: 500;
     opacity: 0;
     transition: 0.4s ease;
+    color: #fff;
 }
 
 .alert.show {
@@ -97,15 +115,15 @@
 .profil table {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
+    background: #1e1e1e;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 0 15px rgba(50, 205, 50, 0.25);
 }
 
 .profil table th {
-    background: #1c1c1c;
-    color: #32CD32;
+    background: #228B22;
+    color: #fff;
     padding: 12px;
     text-align: left;
     font-size: 14px;
@@ -113,8 +131,9 @@
 
 .profil table td {
     padding: 12px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #32CD32;
     font-size: 14px;
+    color: #eaeaea;
 }
 
 .profil table tr:last-child td {
@@ -122,14 +141,25 @@
 }
 
 .profil table tr:hover {
-    background: #f5f5f5;
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.profil table a {
+    color: #00FF00;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.profil table a:hover {
+    color: #32CD32;
+    text-shadow: 0 0 6px #00FF00;
 }
 
 /* MOBIL */
 @media (max-width: 768px) {
     .profil {
         margin: 40px 15px;
-        padding: 10px;
+        padding: 25px 15px;
     }
 
     .profil .gomb {
@@ -140,4 +170,10 @@
     .profil table {
         font-size: 13px;
     }
+}
+
+@media (max-width: 480px) {
+    .profil h2 { font-size: 20px; }
+    .profil table { font-size: 12px; }
+    .profil input, .profil textarea { font-size: 14px; }
 }

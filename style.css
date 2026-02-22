@@ -43,7 +43,7 @@ body {
     font-weight: 500;
     transition: 0.3s;
     padding: 8px 14px;
-    border-radius: 8px;
+    border-radius: 25px;
 }
 
 .navbar ul li a:hover {
@@ -55,6 +55,7 @@ body {
     background-color: #32CD32;
     font-weight: bold;
     border-bottom: 2px solid #32CD32;
+    color: #000;
 }
 
 
@@ -261,7 +262,7 @@ body {
 
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
 .product-card img {
@@ -336,4 +337,19 @@ footer {
 .welcome-box:hover {
   opacity: 1;
   transform: scale(1.03);
+}
+.admin-link {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0); }
+}
+
+@media (max-width: 768px) {
+    .admin-link {
+        animation: none; /* Mobilon kikapcsoljuk a villogást */
+    }
 }

@@ -8,73 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rólunk | NFC Chip Projekt</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7fff7;
-            color: #222;
-        }
-
-        .content {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px 30px;
-            background: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        h1, h2 {
-            color: #228b22;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            border-left: 6px solid #32cd32;
-            padding-left: 10px;
-            margin-top: 25px;
-        }
-
-        p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .highlight {
-            color: #32cd32;
-            font-weight: bold;
-        }
-
-        .team {
-            background: #f0fff0;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #00ff00;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #555;
-            font-size: 0.9rem;
-        }
-
-        a {
-            color: #228b22;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-    </style>
+    <link rel="stylesheet" href="rolunk.css">
 </head>
 <body>
     <?php include 'navbar.php'; ?>
@@ -120,13 +54,6 @@
             érintés vagy közeli érintkezés útján. Nincs szükség internetkapcsolatra, 
             a kommunikáció gyors, biztonságos és energiatakarékos. 
         </p>
-        <p>
-            A mindennapokban az NFC-t leggyakrabban <strong>bankkártyás érintéses fizetésnél, 
-            beléptető rendszereknél vagy digitális névjegykártyáknál</strong> használják. 
-            Mi ezt a technológiát hasznosítjuk új módon: a bilétába épített chip lehetővé teszi,
-            hogy egyetlen telefonérintéssel elérhetők legyenek a kutyus legfontosabb adatai,
-            így a megtaláló azonnal kapcsolatba léphet a gazdival.
-        </p>
 
         <h2>A 3D nyomtatásról röviden</h2>
         <p>
@@ -152,7 +79,6 @@
                 milyen hatékonyan szolgálhatja a mindennapi életet.
             </p>
         </div>
-
     </div>
 
     <footer>

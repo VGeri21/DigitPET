@@ -71,6 +71,7 @@ if (isset($_POST['regisztral'])) {
   <i style="--clr:#32CD32;"></i>	
   <i style="--clr:#228B22;"></i>
   <div class="login">
+    <h2>DigitPet</h2>
     <h2>Regisztráció</h2>
     <div class="inputBx">
     <form method="post">

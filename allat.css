@@ -1,4 +1,4 @@
-/* ÁLLAT REGISZTRÁCIÓ – RESZPONZÍV DESIGN */
+/* ÁLLAT REGISZTRÁCIÓ – EGYSÉGES SÖTÉT-ZÖLD DESIGN */
 .allat-regisztracio {
     background: #2a2a2a;
     padding: 40px 20px;
@@ -9,7 +9,7 @@
     color: #eaeaea;
 }
 
-/* Címek */
+/* CÍMEK */
 .allat-regisztracio h2 {
     color: #32CD32;
     text-align: center;
@@ -18,7 +18,7 @@
     letter-spacing: 1px;
 }
 
-/* Űrlap */
+/* ŰRLAP */
 .allat-form {
     background: #1e1e1e;
     padding: 25px;
@@ -29,7 +29,13 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    box-shadow: 0 0 10px rgba(50, 205, 50, 0.3);
+    box-shadow: 0 0 15px rgba(50, 205, 50, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.allat-form:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.35);
 }
 
 .allat-form input,
@@ -41,6 +47,7 @@
     background: #121212;
     color: #fff;
     font-size: 15px;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .allat-form input:focus,
@@ -50,15 +57,17 @@
     box-shadow: 0 0 6px #00FF00;
 }
 
+/* GOMBOK */
 .allat-form .gomb {
     width: 100%;
     background: #228B22;
     color: #fff;
     padding: 12px;
     border: none;
-    border-radius: 8px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 16px;
+    font-weight: bold;
     transition: 0.25s ease;
 }
 
@@ -66,8 +75,10 @@
     background: #32CD32;
     color: #000;
     box-shadow: 0 0 10px #00FF00;
+    transform: translateY(-2px);
 }
 
+/* HORIZONTÁLIS ELVÁLASZTÓ */
 .allat-regisztracio hr {
     width: 70%;
     margin: 40px auto;
@@ -75,7 +86,7 @@
     opacity: 0.4;
 }
 
-/* Tábla */
+/* TÁBLÁZAT */
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -90,6 +101,7 @@ table {
     min-width: 600px;
     border-collapse: collapse;
     background: #1e1e1e;
+    color: #eaeaea;
 }
 
 table th {
@@ -119,7 +131,7 @@ table a:hover {
     text-shadow: 0 0 6px #00FF00;
 }
 
-/* Alert */
+/* ALERT */
 .alert {
     position: fixed;
     top: -80px;
@@ -139,7 +151,7 @@ table a:hover {
 .alert.error { background: #e53935; }
 .alert.show { top: 20px; }
 
-/* Reszponzív */
+/* RESZPONZÍV */
 @media (max-width: 768px) {
     .allat-regisztracio { padding: 25px; margin: 35px 10px; }
     .allat-form { padding: 18px; }
