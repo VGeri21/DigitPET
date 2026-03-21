@@ -38,14 +38,18 @@ $rendeles_id = null;
 
 if ($rendeles) {
     $rendeles_id = $rendeles['id'];
-
-    $stmt = $kapcsolat->prepare("SELECT * FROM kosar WHERE rendeles_id = ?");
-    $stmt->bind_param("i", $rendeles_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    while ($row = $result->fetch_assoc()) {
-        $kosar_tetelek[] = $row;
-    }
+$stmt = $kapcsolat->prepare("
+    SELECT k.*, a.kutya_nev 
+    FROM kosar k
+    LEFT JOIN allatok a ON k.allat_id = a.id
+    WHERE k.rendeles_id = ?
+");
+$stmt->bind_param("i", $rendeles_id);
+$stmt->execute();
+$result = $stmt->get_result();
+while ($row = $result->fetch_assoc()) {
+    $kosar_tetelek[] = $row;
+}
 
     $osszes_db = count($kosar_tetelek);
 }
@@ -62,16 +66,30 @@ if (isset($_GET['torles']) && $rendeles_id) {
     exit();
 }
 
-/* RENDELÉS LEADÁS */
+/* RENDELÉS LEADÁS CHECKOUT ADATOKKAL */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rendeles_leadas']) && $rendeles_id) {
 
-    $stmt = $kapcsolat->prepare("UPDATE rendeles SET teljesitett = 1 WHERE id = ?");
-    $stmt->bind_param("i", $rendeles_id);
+    $nev = $_POST['nev'];
+    $email = $_POST['email'];
+    $cim = $_POST['cim'];
+    $telefon = $_POST['telefon'];
+
+    if (empty($nev) || empty($email) || empty($cim) || empty($telefon)) {
+        $_SESSION['uzenet'] = "❌ Minden mező kitöltése kötelező!";
+    } else {
+
+    $stmt = $kapcsolat->prepare("
+    UPDATE rendeles 
+    SET teljesitett = 1, nev = ?, email = ?, cim = ?, telefonszam = ?
+    WHERE id = ?
+    ");
+    $stmt->bind_param("ssssi", $nev, $email, $cim, $telefon, $rendeles_id);
     $stmt->execute();
 
-    $_SESSION['uzenet'] = "✅ Rendelés leadva!";
-    header("Location: kosar.php");
-    exit();
+        $_SESSION['uzenet'] = "✅ Rendelés leadva!";
+        header("Location: kosar.php");
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -80,6 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rendeles_leadas']) &&
 <meta charset="UTF-8">
 <title>Kosaram - DigitPet</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="kosar.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 .kosar-container { max-width: 800px; margin: 20px auto; padding: 20px; }
@@ -113,14 +132,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rendeles_leadas']) &&
 <?php foreach($kosar_tetelek as $tetel): ?>
 <div class="kosar-item">
 <strong>Tétel ID:</strong> <?= $tetel['id'] ?><br>
-<strong>Állat ID:</strong> <?= $tetel['allat_id'] ?><br>
+<strong>Állat neve:</strong> <?= !empty($tetel['kutya_nev']) ? htmlspecialchars($tetel['kutya_nev']) : 'Nincs megadva' ?><br>
 <strong>Típus:</strong> <?= !empty($tetel['termek_tipus']) ? htmlspecialchars($tetel['termek_tipus']) : 'Egyedi tervezés' ?>
 </div>
 <?php endforeach; ?>
 
-<form method="POST" style="margin-top:20px;">
+<form method="POST" class="allat-form" style="margin-top:20px;">
+
+<h2>📦 Szállítási adatok</h2>
+
+<input type="text" name="nev" placeholder="Teljes név" required>
+<input type="email" name="email" placeholder="Email cím" required>
+<input type="tel" name="telefon" placeholder="Telefonszám" required pattern="[0-9+ ]+">
+<textarea name="cim" placeholder="Szállítási cím" required></textarea>
+
 <button type="submit" name="rendeles_leadas" class="lead-button">
-✅ RENDELÉST LEADOM (<?= $osszes_db ?> db)
+    ✅ RENDELÉST LEADOM (<?= $osszes_db ?> db)
 </button>
 </form>
 

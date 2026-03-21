@@ -39,8 +39,8 @@ $allatokLista = $allatok->get_result();
 
 /* TERMÉKEK */
 $termekek = [
-    ['id' => 1, 'nev' => 'Fehér-Fekete NFC Biléta', 'ar' => 2990, 'tipus' => 'feher-fekete'],
-    ['id' => 2, 'nev' => 'Fekete-Fehér NFC Biléta', 'ar' => 2990, 'tipus' => 'fekete-feher']
+    ['id' => 1, 'nev' => 'Fehér-Fekete NFC Biléta', 'ar' => 2990, 'tipus' => 'Basick fehér alapon fekete'],
+    ['id' => 2, 'nev' => 'Fekete-Fehér NFC Biléta', 'ar' => 2990, 'tipus' => 'Basick fekete alapon fehér'],
 ];
 
 /* KOSÁR HOZZÁADÁS */

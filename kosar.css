@@ -1,0 +1,149 @@
+/* ALAP BEÁLLÍTÁSOK */
+body {
+    background: #f9f9f9;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.kosar-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* KOSÁR CÍM */
+.kosar-container h1 {
+    text-align: center;
+    color: #32CD32;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ÜZENET DOBOZ */
+.kosar-container .uzenet {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* ÖSSZESÍTŐ DOBOZ */
+.kosar-osszes {
+    background: #f0fff0;
+    border: 1px solid #32CD32;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.kosar-osszes h2 {
+    margin-bottom: 15px;
+    color: #228B22;
+}
+
+/* KOSÁR TÉTEL */
+.kosar-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0;
+    border: 1px solid #32CD32;
+    box-shadow: 0 2px 8px rgba(50, 205, 50, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.kosar-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(50, 205, 50, 0.25);
+}
+
+.kosar-item strong {
+    color: #228B22;
+}
+
+/* FORM */
+.allat-form {
+    margin-top: 20px;
+}
+
+.allat-form input,
+.allat-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.allat-form textarea {
+    resize: vertical;
+}
+
+/* RENDELÉS GOMB */
+.lead-button {
+    background: #32CD32;
+    color: #fff;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.lead-button:hover {
+    background: #228B22;
+    box-shadow: 0 0 10px rgba(50,205,50,0.5);
+}
+
+/* KOSÁR TÖRLÉSE GOMB */
+.torles-btn {
+    background: #dc3545;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.torles-btn:hover {
+    background: #ff4d4d;
+    box-shadow: 0 0 10px rgba(255,77,77,0.5);
+}
+
+/* ÜRES KOSÁR */
+.ures-kosar {
+    text-align: center;
+    padding: 50px 20px;
+    color: #6c757d;
+    font-size: 1.1em;
+}
+
+/* RESZPONZÍV */
+@media (max-width: 768px) {
+    .kosar-container { padding: 20px; margin: 30px 15px; }
+    .lead-button { font-size: 16px; padding: 12px; }
+    .torles-btn { font-size: 14px; padding: 8px 16px; }
+}
+
+@media (max-width: 480px) {
+    .kosar-container { padding: 15px; }
+    .lead-button { font-size: 14px; padding: 10px; }
+    .kosar-item { padding: 15px; }
+    .ures-kosar { padding: 30px 10px; font-size: 1em; }
+}

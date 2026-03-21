@@ -94,7 +94,7 @@ $veg = rendelesek($kapcsolat, $user_id, 'vegrehajtott');
 <!-- FELHASZNÁLÓNÉV -->
 <div class="profil-card">
 <form method="post">
-    <input name="uj_felhasznalonev" value="<?= htmlspecialchars($user['felhasznalonev']) ?>" required>
+    <input name="uj_felhasznalonev" value="<?= htmlspecialchars($user['felhasznalonev']) ?>" placeholder="Új felhasználónév" required>
     <button name="nev_modosit" class="gomb">Felhasználónév módosítása</button>
 </form>
 </div>

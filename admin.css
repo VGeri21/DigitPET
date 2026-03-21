@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0 15px;
+}
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #2e7d32;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+th {
+    background: #2e7d32;
+    color: #fff;
+}
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+@media(max-width:768px){
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    th {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        margin-bottom: 10px;
+    }
+    td:before {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+    td:nth-of-type(1):before { content: "Rendelés ID"; }
+    td:nth-of-type(2):before { content: "User ID"; }
+    td:nth-of-type(3):before { content: "Felhasználó"; }
+    td:nth-of-type(4):before { content: "Dátum"; }
+    td:nth-of-type(5):before { content: "Állat ID"; }
+    td:nth-of-type(6):before { content: "Név"; }
+    td:nth-of-type(7):before { content: "Termék típusa"; }
+    td:nth-of-type(8):before { content: "Forma"; }
+    td:nth-of-type(9):before { content: "Alapszín"; }
+    td:nth-of-type(10):before { content: "Keret szín"; }
+    td:nth-of-type(11):before { content: "Felirat"; }
+}
+nav {
+    background: #2e7d32;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+/*Navbar gombok legyenek elegáns lekerekített zöld gombok hoverrel*/
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: #388e3c;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+nav a:hover {
+    background: #1b5e20;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+/* Navbar reszponzív */
+@media(max-width: 500px) {
+    nav a {
+        display: block;
+        margin: 10px auto;
+        width: 80%;
+    }
+}
+/* Rendelés blokk */
+.rendeles {
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 40px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Termékek egy rendelésen belül */
+.termek-blokk {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    border-top: 2px dashed #ccc;
+    padding-top: 20px;
+}
+
+/* 3 card egymás mellett */
+.card-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Egy card */
+.card {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 5px solid #2e7d32;
+    min-width: 250px;
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #2e7d32;
+}
+
+/* 3 oszlop */
+.termek-blokk {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.termek-blokk .card {
+    width: 32%;
+}
+
+/* Több termék jelölés */
+.rendeles h2 {
+    background: #2e7d32;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* RESZPONZÍV */
+@media(max-width: 900px){
+    .termek-blokk .card {
+        width: 100%;
+    }
+}
+.termek-blokk:not(:first-child) {
+    border-top: 3px solid #2e7d32;
+}

@@ -30,7 +30,7 @@ if (isset($_SESSION['felhasznalo'])) {
             <li><a href="allat.php" class="<?= ($current_page == 'allat.php') ? 'active' : '' ?>">Saját állatom adatai</a></li>
             <li><a href="termekek.php" class="<?= ($current_page == 'termekek.php') ? 'active' : '' ?>">Termékek</a></li>
             <li><a href="tervez.php" class="<?= ($current_page == 'tervez.php') ? 'active' : '' ?>">Egyedi bilétát tervezek</a></li>
-            <li><a href="kosar.php">Kosár</a></li>
+            <li><a href="kosar.php" class="<?=($current_page == 'kosar.php') ? 'active' : '' ?>">Kosár</a></li>
             
             <?php if ($is_admin): ?>
             <li><a href="admin.php" class="admin-link <?= ($current_page == 'admin.php') ? 'active' : '' ?>" style="color: #ff4444; font-weight: bold; background: #ffeeee; padding: 5px 10px; border-radius: 4px;">🔧 ADMIN</a></li>
