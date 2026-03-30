@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="DP.png">
     <title>DigitPet – Okos nyakörv NFC-vel</title>
     <link rel="stylesheet" href="style.css">
 

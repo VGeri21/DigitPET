@@ -100,6 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rendeles_leadas']) &&
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="kosar.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="DP.png">
 <style>
 .kosar-container { max-width: 800px; margin: 20px auto; padding: 20px; }
 .kosar-osszes { background: #e8f5e8; padding: 20px; border-radius: 10px; text-align: center; margin-bottom: 30px; }

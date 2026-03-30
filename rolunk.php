@@ -9,6 +9,7 @@
     <title>Rólunk | NFC Chip Projekt</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="rolunk.css">
+    <link rel="icon" type="image/x-icon" href="DP.png">
     <style>
         .gallery{
             padding: 30px;

@@ -70,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['egyedi_kosar'])) {
     <title>DigitPet Biléta Tervező</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="tervez.css">
+    <link rel="icon" type="image/x-icon" href="DP.png">
     <style>
         .kosar { background: #f0f8f0; padding: 15px; margin: 20px 0; border-radius: 8px; }
         .rendeles-lead button { background: #28a745; color: white; padding: 12px 30px; border: none; border-radius: 5px; }

@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['termek_id'])) {
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="termekek.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="DP.png">
 <style>
     footer{
         display:block;
