@@ -18,7 +18,7 @@ if (isset($_SESSION['felhasznalo'])) {
 }
 ?>
 <nav class="navbar" id="navbar">
-    <div class="logo">DigitPET</div>
+    <div class="logo"><a id="gombos" href="index.php">DigitPET</a></div>
     <span class="menu-toggle" id="menu-toggle">&#9776;</span>
 
     <ul>

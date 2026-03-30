@@ -3,8 +3,8 @@ session_start();
 include 'kapcsolat.php';
 
 if (!isset($_SESSION['felhasznalo'])) {
-        header("Location: bejelentkez.php");
-        exit();
+    header("Location: bejelentkez.php");
+    exit();
 }
 
 $felhasznalonev = $_SESSION['felhasznalo'];
@@ -57,17 +57,26 @@ if (isset($_POST['jelszo_modosit'])) {
     }
 }
 
-/* RENDELÉSEK */
-function rendelesek($kapcsolat, $user_id, $allapot){
-    $q = $kapcsolat->prepare("SELECT * FROM rendeles WHERE felhasznalo_id = ? AND teljesitett = ?");
-    $q->bind_param("is", $user_id, $allapot);
+/* RENDELÉSEK (ÚJ) */
+function rendelesek($kapcsolat, $user_id){
+    $q = $kapcsolat->prepare("
+        SELECT 
+            r.id AS rendeles_id,
+            r.datum,
+            a.kutya_nev,
+            k.termek_tipus
+        FROM rendeles r
+        LEFT JOIN kosar k ON r.id = k.rendeles_id
+        LEFT JOIN allatok a ON k.allat_id = a.id
+        WHERE r.felhasznalo_id = ?
+        ORDER BY r.datum DESC
+    ");
+    $q->bind_param("i", $user_id);
     $q->execute();
     return $q->get_result();
 }
 
-$aktiv = rendelesek($kapcsolat, $user_id, 'aktiv');
-$keszul = rendelesek($kapcsolat, $user_id, 'keszul');
-$veg = rendelesek($kapcsolat, $user_id, 'vegrehajtott');
+$rendelesek = rendelesek($kapcsolat, $user_id);
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +111,7 @@ $veg = rendelesek($kapcsolat, $user_id, 'vegrehajtott');
 <hr>
 
 <!-- JELSZÓ -->
- <div class="profil-card">
+<div class="profil-card">
 <form method="post">
     <input type="password" name="regi_jelszo" placeholder="Régi jelszó" required>
     <input type="password" name="uj_jelszo" placeholder="Új jelszó" required>
@@ -114,31 +123,36 @@ $veg = rendelesek($kapcsolat, $user_id, 'vegrehajtott');
 
 <h2>Rendeléseim</h2>
 
+<div class="profil-card">
+
 <?php
-function tabla($cim, $adat){
-    echo "<h3>$cim</h3>";
-    if($adat->num_rows == 0){
-        echo "<p>Nincs ilyen rendelés.</p>";
-        return;
+$current_id = null;
+
+while($r = $rendelesek->fetch_assoc()){
+
+    if($current_id != $r['rendeles_id']){
+        if($current_id !== null){
+            echo "</ul>";
         }
-        echo "<table><tr><th>ID</th><th>Dátum</th><th>Összeg</th><th>Állapot</th></tr>";
-        while($r = $adat->fetch_assoc()){
-            echo "<tr>
-            <td>{$r['id']}</td>
-            <td>{$r['datum']}</td>
-            <td>{$r['osszeg']} Ft</td>
-            <td>{$r['allapot']}</td>
-            </tr>";
-            }
-            echo "</table>";
-            }
-            
-            echo '<div class="profil-card">';
-            tabla("🟢 Aktív rendelések", $aktiv);
-            tabla("⚙️ Készítés alatt", $keszul);
-            tabla("✅ Végrehajtott rendelések", $veg);
-            echo "</div>";
+
+        echo "<h3>📅 {$r['datum']}</h3>";
+        echo "<ul>";
+
+        $current_id = $r['rendeles_id'];
+    }
+
+    if($r['kutya_nev']){
+        $tipus = $r['termek_tipus'] ? "🟢 Basic" : "🔵 Egyedi";
+        echo "<li>{$r['kutya_nev']} → {$tipus}</li>";
+    }
+}
+
+if($current_id !== null){
+    echo "</ul>";
+}
 ?>
+
+</div>
 
 </div>
 
@@ -149,10 +163,6 @@ if(alertBox){
     setTimeout(()=>alertBox.classList.remove("show"),4000);
 }
 </script>
-    <footer>
-        <p>© 2025 DigitPet | Okos nyakörvek NFC technológiával</p>
-    </footer>
-
 
 </body>
 </html>
