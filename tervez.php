@@ -147,7 +147,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['egyedi_kosar'])) {
         </form>
     </div>
 </div>
-
 <script>
 const formak = {
     kor: document.getElementById('forma-kor'),

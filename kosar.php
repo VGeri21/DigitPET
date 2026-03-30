@@ -107,6 +107,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rendeles_leadas']) &&
 .lead-button { background: #28a745; color: white; padding: 15px 40px; font-size: 18px; border: none; border-radius: 8px; cursor: pointer; width: 100%; }
 .torles-btn { background: #dc3545; color: white; padding: 8px 15px; border-radius: 5px; text-decoration:none; display:inline-block; margin-top:10px; }
 .ures-kosar { text-align: center; padding: 60px; color: #6c757d; }
+footer{
+        display: flexbox;
+        bottom: 0;
+        width: 100%;
+    }
 </style>
 </head>
 <body>
