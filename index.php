@@ -196,11 +196,5 @@
     endif; 
     ?>
 
-    <footer>
-        <p>© 2025 DigitPet | Okos nyakörvek NFC technológiával</p>
-    </footer>
-
-
-
 </body>
 </html>

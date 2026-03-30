@@ -145,6 +145,7 @@ $talalatok = $allatok->get_result();
 
 </div>
 
+
 <script>
 const alertBox = document.getElementById("alertBox");
 if(alertBox){
