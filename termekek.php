@@ -39,8 +39,8 @@ $allatokLista = $allatok->get_result();
 
 /* TERMÉKEK */
 $termekek = [
-    ['id' => 1, 'nev' => 'Fehér-Fekete NFC Biléta', 'ar' => 2990, 'tipus' => 'Basick fehér alapon fekete'],
-    ['id' => 2, 'nev' => 'Fekete-Fehér NFC Biléta', 'ar' => 2990, 'tipus' => 'Basick fekete alapon fehér'],
+    ['id' => 1, 'nev' => 'Fehér alapon fekete basic NFC Biléta', 'tipus' => 'Basick fehér alapon fekete', 'kep' => 'basic2.png'],
+    ['id' => 2, 'nev' => 'Fekete alapon fehér basic NFC Biléta', 'tipus' => 'Basick fekete alapon fehér', 'kep' => 'basic1.png'],
 ];
 
 /* KOSÁR HOZZÁADÁS */
@@ -73,6 +73,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['termek_id'])) {
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="termekek.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    footer{
+        display:block;
+        margin:auto;
+        align-items: center;
+        width: 100%;
+    }
+</style>
 </head>
 <body>
 
@@ -104,9 +112,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['termek_id'])) {
 <?php foreach ($termekek as $t): ?>
 <div class="termek">
     <form method="POST">
+        <img src="<?= $t['kep'] ?>" alt="<?= $t['nev'] ?>" class="termek-kep">
         <h3><?= $t['nev'] ?></h3>
-        <p class="ar"><?= number_format($t['ar'],0,","," ") ?> Ft</p>
-
         <input type="hidden" name="termek_id" value="<?= $t['id'] ?>">
         <input type="hidden" name="termek_tipus" value="<?= $t['tipus'] ?>">
         <input type="hidden" name="allat_id" class="allatHidden">
@@ -118,6 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['termek_id'])) {
 </div>
 
 </div>
+
 
 <script>
 const allatSelect = document.getElementById('allatSelect');

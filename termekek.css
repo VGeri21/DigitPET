@@ -141,3 +141,6 @@ hr {
     .termek .ar { font-size: 14px; }
     .termek form button { font-size: 14px; padding: 8px; }
 }
+img{
+    border-radius: 16px;
+}
