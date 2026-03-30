@@ -1,5 +1,5 @@
 # DigitPET
-Ez itt a digitPet leírása, aminek nincs sok értelme!!!! 😁
+A munkánk az alábbi oldalon szintén elérhető:
+http://digitpet.hu/index.php
 
-
-Ez itt egy gyönyörű readmeeeeee!!!!!! ━━(￣ー￣*|||━━
+Amennyiben ha lokális tesztelésre kerül sor át kell írni a kapcsolat.php fájlban az adatbázishoz kapcsolódó adatokat (felhhasználónév, jelszó, adatbázis neve)!
