@@ -9,6 +9,11 @@
     <title>Rólunk | NFC Chip Projekt</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="rolunk.css">
+    <style>
+        .gallery{
+            padding: 30px;
+        }
+    </style>
 </head>
 <body>
     <?php include 'navbar.php'; ?>
@@ -81,8 +86,130 @@
         </div>
     </div>
 
-    <footer>
-        <p>© 2025 DigitPet | Okos nyakörvek NFC technológiával</p>
-    </footer>
+<!-- GALÉRIA -->
+<h2 align="center">Referenciák</h2>
+<div class="gallery">
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+            <img src="mancs.png" class="gallery-image">
+            <div class="gallery-overlay">
+                <span class="gallery-title">Egyedi biléta</span>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="Naomi.png" class="gallery-image">
+            <div class="gallery-overlay">
+                <span class="gallery-title">Egyedi biléta</span>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="egyedi.png" class="gallery-image">
+            <div class="gallery-overlay">
+                <span class="gallery-title">Egyedi biléta</span>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="merkur.png" class="gallery-image">
+            <div class="gallery-overlay">
+                <span class="gallery-title">Egyedi biléta</span>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="basic2.png" class="gallery-image">
+            <div class="gallery-overlay">
+                <span class="gallery-title">Basic biléta</span>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="basic1.png" class="gallery-image">
+            <div class="gallery-overlay">
+                <span class="gallery-title">Basic biléta</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- MODAL -->
+<div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+
+    <!-- NYILAK -->
+    <button class="modal-prev">&#10094;</button>
+    <button class="modal-next">&#10095;</button>
+
+    <div style="text-align:center;">
+        <img class="modal-image" id="modalImage" src="">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const closeBtn = document.querySelector('.modal-close');
+    const prevBtn = document.querySelector('.modal-prev');
+    const nextBtn = document.querySelector('.modal-next');
+
+    let currentIndex = 0;
+
+    function showImage(index) {
+        const item = galleryItems[index];
+        const img = item.querySelector('.gallery-image');
+        const title = item.querySelector('.gallery-title').textContent;
+
+        modalImage.src = img.src;
+        modalCaption.textContent = title;
+    }
+
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', function() {
+            currentIndex = index;
+            showImage(currentIndex);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % galleryItems.length;
+        showImage(currentIndex);
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        showImage(currentIndex);
+    }
+
+    nextBtn.addEventListener('click', nextImage);
+    prevBtn.addEventListener('click', prevImage);
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+    });
+});
+</script>
 </body>
 </html>
