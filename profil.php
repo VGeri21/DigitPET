@@ -149,6 +149,10 @@ if(alertBox){
     setTimeout(()=>alertBox.classList.remove("show"),4000);
 }
 </script>
+    <footer>
+        <p>© 2025 DigitPet | Okos nyakörvek NFC technológiával</p>
+    </footer>
+
 
 </body>
 </html>
